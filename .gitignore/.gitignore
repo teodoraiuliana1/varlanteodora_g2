@@ -1,0 +1,83 @@
+/*
+Colorare Greedy
+*/
+#include<iostream>
+#include<fstream>
+int C[100];// vectorul codificarilor de culoare
+                // C[i]=k tara i are culoarea k
+                // daca C[i]=0 inseamna ca tara i este
+                // inca necolorata
+int M[100][100];  // harta vecinatatilor teritoriului de colorat
+                // M[i][j]=1 daca tara i este vecina cu tara j
+                // relatia de vecinatate este simetrica
+                // deci daca M[i][j]=1 atunci si
+                // M[j][i]=1 adica matricea M este simetrica
+                // fata de diagonala principala
+                // relatia de vecinatate nu este reflexiva
+                // adica o tara nu este vecina ca ea insasi
+                // deci matricea M are 0 pe diagonala principala
+int n; // numarul tarilor
+          // adica dimensiunea patratica a matricei M
+// ---
+// Fiecarei tari trebuie sa ii selectez o culoare
+// ( optim local = cel mai mic cod nefolosit de
+//  nici una din vecinele ei colorate )
+// Codurile le consider din multimea primelor
+// n numere naturale  nenule
+// ( deci 1,2,3, .... )
+// Altfel spus multimea din care trebuie sa fac o selectie
+// ( multime a culorilor  este deja ordonata crescator )
+int read_data()
+{
+ int x,y;
+  ifstream f("tari.txt")
+  f>>n;
+while (f>>x>>y)
+   {C[x][y]=1;
+    C[y][x]=1;
+   }
+ /*
+  n
+  a11 ... a1n
+  ...
+  an1 ... ann
+ */
+}
+
+int compute_greedy()
+{
+    for(int tara=1;tara<=n;tara++)
+    {
+     int culoare=1;
+     for(int k=1;k<=n;k++)
+     {
+         if(M[i][k]=M[i][j])
+         {
+             culoare=culoare+1;
+
+         }
+         C[tara]=culoare;
+     }
+    }
+ /*
+ pentru 'tara'=1 pana la n executa
+            'culoare'=1;
+            pentru k=1 pana la n executa
+            - daca tara k este vecina si colorata in 'culoare'
+                            atunci
+                            culoare=culoare+1;
+                                            sf_executa
+            C['tara']='culoare'
+ */
+}
+
+
+int main()
+{
+read_data();
+int culori=compute_greedy();
+cout<<endl<<" Utilizate "<<culori<<" culori "<<endl;
+for(int i=1;i<=n;i++)
+{ cout<<endl;
+  cout<<"Tara "<<i<<" culoare  "<C[i];  }
+}
